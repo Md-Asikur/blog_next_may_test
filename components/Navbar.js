@@ -13,7 +13,7 @@ const Navbar = () => {
             color: "whitesmoke",
           }}
         >
-          <Link href={"/Hi"}>Hi</Link>
+          <Link href={"/hi"}>Hi</Link>
         </li>
         <li
           style={{
@@ -23,7 +23,7 @@ const Navbar = () => {
             color: "whitesmoke",
           }}
         >
-          <Link href={"/HiStatic"}>HiStatic</Link>
+          <Link href={"/hiStatic"}>HiStatic</Link>
         </li>
         <li
           style={{
@@ -43,7 +43,7 @@ const Navbar = () => {
             color: "whitesmoke",
           }}
         >
-          <Link href={"/UseEffect"}>UseEffect</Link>
+          <Link href={"/useEffect"}>UseEffect</Link>
         </li>
       </ul>
     </>
