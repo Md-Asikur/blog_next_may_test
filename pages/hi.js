@@ -2,7 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const hi = (props) => {
+const Hi = (props) => {
   console.log("props", props);
   const [data, setdata] = useState(props.allBlogs);
   if (!data) {
@@ -48,4 +48,4 @@ export async function getServerSideProps(context) {
  }
 }
 
-export default hi;
+export default Hi;

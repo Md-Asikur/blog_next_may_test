@@ -3,9 +3,9 @@ import axios from "axios";
 import Link from "next/link";
 import React from "react";
 
-const hi = (props) => {
+const Hi = (props) => {
   console.log("props", props);
-  
+
   return (
     <div>
           <Details blogDetail={props.blogDetail} />
@@ -25,4 +25,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default hi;
+export default Hi;
