@@ -1,19 +1,23 @@
 // Import necessary modules
 import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 // Define your component
 const Hi = (props) => {
   console.log(props)
+   const [data, setdata] = useState(props.blogDetail);
+   if (!data) {
+     return <div>Loading...</div>;
+   }
   return (
     <div>
       <Link href={"/hi"}>Back</Link>
       <ul>
-        <p>{props.blogDetail.title}</p>
-        <p>{props.blogDetail.content}</p>
-        <p>{props.blogDetail._id}</p>
-        <p>{props.blogDetail.createdAt}</p>
+        <p>{data.title}</p>
+        <p>{data.content}</p>
+        <p>{data._id}</p>
+        <p>{data.createdAt}</p>
       </ul>
     </div>
   );

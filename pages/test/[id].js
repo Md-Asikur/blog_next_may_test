@@ -5,6 +5,7 @@ import React from "react";
 
 const hi = (props) => {
   console.log("props", props);
+  
   return (
     <div>
           <Details blogDetail={props.blogDetail} />

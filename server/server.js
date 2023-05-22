@@ -4,10 +4,12 @@ const { db } = require("./db/db");
 const cookieParser = require("cookie-parser")
 const dotenv = require("dotenv");
 const errorHandler = require("./errorHandler/errorHandler");
+const cors=require("cors")
 const app = express();
 app.use(express.json())
 app.use(bodyParser.urlencoded())
 app.use(cookieParser());
+app.use(cors({origin:"*"}));
 dotenv.config();
 
 app.use(errorHandler)
