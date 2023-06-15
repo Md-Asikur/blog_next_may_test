@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
-
+const {serialize}=require("cookie")
 const generateToken = (user) => {
   return jwt.sign(
     { userId: user._id, username: user.username, role: user.role },
@@ -35,8 +35,10 @@ UserController.registerUser = async (req, res, next) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 3600000, // 1 hour in milliseconds
-      secure: process.env.NODE_ENV === "production", // Set secure flag for production environment
+       maxAge: 24*60*60*1000, // 1 hour in milliseconds
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict", // Adjust the sameSite value based on your requirements
+      path: "/", // Set secure flag for production environment
     });
 
     res.status(201).json({ savedUser, token });
@@ -48,7 +50,7 @@ UserController.registerUser = async (req, res, next) => {
 UserController.loginUser = async (req, res, next) => {
   try {
     const { username, password } = req.body;
-
+   console.log(req.body)
     const user = await User.findOne({ username });
     if (!user) {
       throw new Error("Invalid username or password");
@@ -63,10 +65,12 @@ UserController.loginUser = async (req, res, next) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 3600000, // 1 hour in milliseconds
-      secure: process.env.NODE_ENV === "production", // Set secure flag for production environment
+      maxAge: 24*60*60*1000, // 1 hour in milliseconds
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict", // Adjust the sameSite value based on your requirements
+      path: "/", // Adjust the path value based on your requirements // Set secure flag for production environment
     });
-
+//  res.setHeader("Set-Cookie", serialize("token", token, cookieOptions));
     res.json({ user, token });
   } catch (error) {
     next(error);
@@ -75,8 +79,8 @@ UserController.loginUser = async (req, res, next) => {
 
 UserController.getAllUser = async (req, res, next) => {
   try {
-    const { userId } = req.user;
-    const users = await User.find();
+    const  userId  = req.user;
+    const users = await User.find({_id:{$ne:userId}});
     if (!users) {
       throw new Error("No users found");
     }
@@ -89,7 +93,8 @@ UserController.getAllUser = async (req, res, next) => {
 
 UserController.getUserProfile = async (req, res, next) => {
   try {
-    const { userId } = req.user;
+    const  userId  = req.user;
+    // console.log("userId",req.user)
     const user = await User.findById(userId);
     if (!user) {
       throw new Error("User not found");
@@ -103,7 +108,7 @@ UserController.getUserProfile = async (req, res, next) => {
 
 UserController.updateUserProfile = async (req, res, next) => {
   try {
-    const { userId } = req.user;
+    const  userId  = req.user;
     const { username, email } = req.body;
 
     const user = await User.findById(userId);
@@ -124,7 +129,7 @@ UserController.updateUserProfile = async (req, res, next) => {
 
 UserController.deleteUserProfile = async (req, res, next) => {
   try {
-    const { userId } = req.user;
+    const  userId  = req.user;
 
     const user = await User.findByIdAndDelete(userId);
     if (!user) {

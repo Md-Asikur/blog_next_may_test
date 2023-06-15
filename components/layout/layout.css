@@ -1,0 +1,23 @@
+.layout {
+
+ 
+  height: 100%;
+  width: 100vw;
+  background-color: #fff;
+}
+.layout-container{
+   padding: 0px 10px;
+   display: flex;
+   
+}
+.layout-left {
+  flex: 20%;
+  background-color: aliceblue;
+  border-right:1px solid var(--main-bg) ;
+  
+  
+}
+.layout-right {
+  flex: 90%;
+  background-color: rgb(248, 247, 246);
+}

@@ -1,11 +1,21 @@
 import Navbar from '@/components/Navbar';
+import Layout from '@/components/layout/Layout';
 import '@/styles/globals.css'
-
+import { SessionProvider } from 'next-auth/react';
+import { ChakraProvider } from "@chakra-ui/react";
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Navbar/>
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+        {/* <Navbar /> */}
+        <ChakraProvider>
+          {" "}
+          <Layout>
+            {" "}
+            <Component {...pageProps} />
+          </Layout>
+        </ChakraProvider>
+      </SessionProvider>
     </>
   );
 }

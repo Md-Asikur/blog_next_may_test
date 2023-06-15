@@ -1,0 +1,38 @@
+.sidebar{
+    position: fixed;
+    height: 100vh;
+    overflow-y: scroll;
+    bottom: 0px;
+    transition: 0.2s linear;
+   
+    
+}
+.sidebar-hide{
+    position: absolute;
+    bottom: 100%;
+}
+.sidebar-nav{
+    display: flex;
+    padding: 10px;
+    border: 1px solid var(--main-color-cyan);
+    border-radius: 3px;
+    margin: 8px 5px;
+    cursor: pointer;
+    
+
+}
+.sidebar-nav a{
+    color:var(--main-bg);
+    font-size: 16px;
+    padding:0px 10px;
+}
+.sidebar-nav svg{
+    font-size: 16px;
+    margin-top: 4px;
+    padding: 2px;
+    
+}
+.sidebar-nav a svg{
+    font-size: 10px;
+    margin-top: 8px;
+}
